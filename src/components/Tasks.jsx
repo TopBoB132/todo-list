@@ -71,6 +71,18 @@ export const Tasks = () => {
     console.log(todos[index])
   }
 
+  const handleClearAll = () => {
+    // Display a confirmation dialog
+    const isConfirmed = window.confirm('Are you sure you want to clear all tasks?');
+
+    if (isConfirmed) 
+    {
+      // User confirmed, clear all todos
+      localStorage.removeItem('todos');
+      setTodos([]);
+    }
+  };
+
   return (
     <div className='container'>
       <div>
@@ -124,6 +136,13 @@ export const Tasks = () => {
           </span>}
         </div>
       </div>
+
+      {todos.length && (
+        <button id='btn_clear_all' onClick={handleClearAll}>
+          Clear All
+        </button>
+      )}
+
     </div>
   )
 }
